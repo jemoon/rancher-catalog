@@ -1,0 +1,10 @@
+.catalog:
+  name: "Magento-Simple"
+  version: "v0.1-jemoon"
+  description: "Popular e-commerce platform"
+  uuid: Magento-Simple-0
+  minimum_rancher_version: v0.51.0
+  questions:
+
+
+magento:
