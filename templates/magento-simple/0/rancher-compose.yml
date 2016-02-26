@@ -5,6 +5,46 @@
   uuid: Magento-Simple-0
   minimum_rancher_version: v0.51.0
   questions:
-
-
+    - variable: "domain"
+      label: "Domain Name"
+      description: "Domain name used for stack"
+      required: true
+      default: ""
+      type: "string"
+    - variable: "mgt_root"
+      description: "Magento root directore on server (has to be absolute path"
+      label: "Magento Root"
+      required: true
+      type: "string"
+      default: "/var/www/html/magento"
+    - variable: "mysql_host"
+      description: "Hostname for MySQL container" 
+      label: "MySQL Host"
+      required: true
+      type: "string"
+      default: "mysql"
+    - variable: "mysql_db"
+      description: "" 
+      label: "Database Name"
+      required: true
+      type: "string"
+      default: "magento"
+    - variable: "mysql_pass"
+      description: "" 
+      label: "MySQL Password"
+      required: true
+      type: "string"
+      default: ""
+    - variable: "mysql_user"
+      description: "" 
+      label: "MySQL User"
+      required: true
+      type: "string"
+      default: ""
+    - variable: "mysql_pass"
+      description: "" 
+      label: "MySQL Password"
+      required: true
+      type: "string"
+      default: ""
 magento:
