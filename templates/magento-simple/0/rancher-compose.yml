@@ -5,56 +5,56 @@
   uuid: Magento-Simple-0
   minimum_rancher_version: v0.51.0
   questions:
-    - variable: "fpm-host"
+    - variable: "FPM_HOST"
       label: "Php-fpm Hostname"
       required: false
       default: "php"
       type: "string"
-    - variable: "fpm-port"
+    - variable: "FPM_PORT"
       label: "Php-fpm Port"
       required: false
       type: "string"
       default: "9000"
-    - variable: "enc-key"
+    - variable: "ENC_KEY"
       label: "Encryption Key For Magento"
       required: true
       type: "string"
       default: ""
-    - variable: "admin-name"
+    - variable: "ADMIN_NAME"
       label: "Admin URL"
       required: true
       type: "string"
       default: "admin"
-    - variable: "mysql-db"
+    - variable: "MYSQL_DB"
       label: "Database Name"
       required: true
       type: "string"
       default: "magento"
-    - variable: "mysql-host"
+    - variable: "MYSQL_HOST"
       description: "" 
       label: "MySQL Host"
       required: true
       type: "string"
       default: "mysql"
-    - variable: "mysql-user"
+    - variable: "MYSQL_USER"
       description: "" 
       label: "MySQL User"
       required: true
       type: "string"
       default: ""
-    - variable: "mysql-pass"
+    - variable: "MYSQL_PASS"
       description: "" 
       label: "MySQL Password"
       required: true
       type: "string"
       default: ""
-    - variable: "app-location"
+    - variable: "APP_LOCATION"
       description: "" 
       label: "App Files Location On Host"
       required: true
       type: "string"
       default: ""
-    - variable: "mysql-location"
+    - variable: "MYSQL_LOCATION"
       description: "" 
       label: "MySQL Location"
       required: true
