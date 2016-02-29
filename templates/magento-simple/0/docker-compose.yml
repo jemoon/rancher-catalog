@@ -1,63 +1,45 @@
-installer:
-  build: docker-images/installer
-  environment:
-    DOMAIN: dockerized-magento.local
-    MAGENTO_ROOT: /var/www/html/web
-    MYSQL_HOST: mysql
-    MYSQL_DATABASE: magento
-    MYSQL_USER: root
-    MYSQL_PASSWORD: pw
-    ADMIN_USERNAME: admin
-    ADMIN_FIRSTNAME: Admin
-    ADMIN_LASTNAME: Inistrator
-    ADMIN_PASSWORD: password123
-    ADMIN_FRONTNAME: admin
-    ADMIN_EMAIL: admin@example.com
-    ENCRYPTIONKEY: 731aea833710535779fe8c7c49bc6c4d
-  volumes_from:
-    - nginx
-  links:
-    - "cache:rediscache"
-    - "sessions:redissession"
-    - "fpc:redisfpc"
-    - "mysql:mysql"
 nginx:
-  image: nginx:latest
+  image: jemoon/magento-nginx:1.0
+  environment:
+    PHP_HOST: ${fpm-host}
+    PHP_PORT: 9000
+    ENCRYPTIONKEY: a918a01cbbdfc27580760640f93fe1a9
+    ADMIN_FRONTNAME: adminJemiol
+    MYSQL_HOST: mysql
+    MYSQL_DATABASE: jemiol
+    MYSQL_USER: root
+    MYSQL_PASSWORD: root
+  container_name: nginx
   ports:
     - "80:80"
     - "443:443"
   links:
     - "php"
-  volumes:
-    - ./logs/nginx:/var/log/nginx
-    - ./config/ssl/cert.pem:/etc/nginx/ssl/cert.pem
-    - ./config/ssl/cert.key:/etc/nginx/ssl/cert.key
-    - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
-    - ./config/nginx/sites-enabled/default.conf:/etc/nginx/conf.d/default.conf
-    - ./config/nginx/includes:/etc/nginx/includes
-    - ./config/nginx/custom-locations:/etc/nginx/custom-locations
   volumes_from:
     - php
 php:
-  build: docker-images/php
+  image: jemoon/magento-php:1.0
+  container_name: php-fpm
   links:
     - "cache:rediscache"
     - "sessions:redissession"
     - "fpc:redisfpc"
     - "mysql:mysql"
   volumes:
-    - .:/var/www/html
+    - /var/www/jemiol.dev/src:/var/www/html
 mysql:
-  image: mysql:5.5
+  image: percona:latest
+  container_name: percona
   ports:
     - "3306:3306"
-  environment:
-    MYSQL_ROOT_PASSWORD: pw
   volumes:
-    - ./data/mysql:/var/lib/mysql
+    - /var/lib/mysql:/var/lib/mysql
 cache:
   image: redis:latest
+  container_name: redis-cache
 fpc:
   image: redis:latest
+  container_name: redis-fpc
 sessions:
   image: redis:latest
+  container_name: redis-sessions

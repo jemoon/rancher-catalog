@@ -1,47 +1,48 @@
 .catalog:
   name: "Magento-Simple"
-  version: "v0.1-jemoon"
+  version: "v0.1-magento"
   description: "Popular e-commerce platform"
   uuid: Magento-Simple-0
   minimum_rancher_version: v0.51.0
   questions:
-    - variable: "domain"
-      label: "Domain Name"
-      description: "Domain name used for stack"
+    - variable: "fpm-host"
+      label: "Php-fpm Hostname"
+      required: false
+      default: "php"
+      type: "string"
+    - variable: "fpm-port"
+      label: "Php-fpm Port"
+      required: false
+      type: "string"
+      default: "9000"
+    - variable: "enc-key"
+      label: "Encryption Key For Magento"
       required: true
+      type: "string"
       default: ""
-      type: "string"
-    - variable: "mgt_root"
-      description: "Magento root directore on server (has to be absolute path"
-      label: "Magento Root"
+    - variable: "admin-name"
+      label: "Admin URL"
       required: true
       type: "string"
-      default: "/var/www/html/magento"
-    - variable: "mysql_host"
-      description: "Hostname for MySQL container" 
-      label: "MySQL Host"
-      required: true
-      type: "string"
-      default: "mysql"
-    - variable: "mysql_db"
-      description: "" 
+      default: "admin"
+    - variable: "mysql-db"
       label: "Database Name"
       required: true
       type: "string"
       default: "magento"
-    - variable: "mysql_pass"
+    - variable: "mysql-host"
       description: "" 
-      label: "MySQL Password"
+      label: "MySQL Host"
       required: true
       type: "string"
-      default: ""
-    - variable: "mysql_user"
+      default: "mysql"
+    - variable: "mysql-user"
       description: "" 
       label: "MySQL User"
       required: true
       type: "string"
       default: ""
-    - variable: "mysql_pass"
+    - variable: "mysql-pass"
       description: "" 
       label: "MySQL Password"
       required: true
