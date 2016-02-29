@@ -2,13 +2,13 @@ nginx:
   image: jemoon/magento-nginx:1.0
   environment:
     PHP_HOST: ${fpm-host}
-    PHP_PORT: 9000
-    ENCRYPTIONKEY: a918a01cbbdfc27580760640f93fe1a9
-    ADMIN_FRONTNAME: adminJemiol
-    MYSQL_HOST: mysql
-    MYSQL_DATABASE: jemiol
-    MYSQL_USER: root
-    MYSQL_PASSWORD: root
+    PHP_PORT: ${fpm-port}
+    ENCRYPTIONKEY: ${enc-key}
+    ADMIN_FRONTNAME: ${admin-name}
+    MYSQL_HOST: ${mysql-host}
+    MYSQL_DATABASE: ${mysql-db}
+    MYSQL_USER: ${mysql-user}
+    MYSQL_PASSWORD: ${mysql-pass}
   container_name: nginx
   ports:
     - "80:80"
@@ -26,14 +26,14 @@ php:
     - "fpc:redisfpc"
     - "mysql:mysql"
   volumes:
-    - /var/www/jemiol.dev/src:/var/www/html
+    - ${app-location}:/var/www/html
 mysql:
   image: percona:latest
   container_name: percona
   ports:
     - "3306:3306"
   volumes:
-    - /var/lib/mysql:/var/lib/mysql
+    - ${mysql-location}:/var/lib/mysql
 cache:
   image: redis:latest
   container_name: redis-cache

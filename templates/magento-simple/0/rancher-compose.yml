@@ -48,4 +48,16 @@
       required: true
       type: "string"
       default: ""
+    - variable: "app-location"
+      description: "" 
+      label: "App Files Location On Host"
+      required: true
+      type: "string"
+      default: ""
+    - variable: "mysql-location"
+      description: "" 
+      label: "MySQL Location"
+      required: true
+      type: "string"
+      default: "/var/lib/mysql"
 magento:
