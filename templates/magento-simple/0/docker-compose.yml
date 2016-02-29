@@ -10,6 +10,8 @@ nginx:
     MYSQL_USER: ${MYSQL_USER}
     MYSQL_PASSWORD: ${MYSQL_PASS}
   container_name: nginx
+  labels:
+    io.rancher.sidekicks: php
   ports:
     - "80:80"
     - "443:443"
@@ -17,8 +19,6 @@ nginx:
     - "php"
   volumes_from:
     - php
-  labels:
-    io.rancher.sidekicks: php
 php:
   image: jemoon/magento-php:1.0
   container_name: php-fpm
