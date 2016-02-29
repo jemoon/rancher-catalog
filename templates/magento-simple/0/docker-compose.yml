@@ -20,6 +20,7 @@ nginx:
 php:
   image: jemoon/magento-php:1.0
   container_name: php-fpm
+  io.rancher.sidekicks: nginx
   links:
     - "cache:rediscache"
     - "sessions:redissession"
