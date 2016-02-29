@@ -17,10 +17,11 @@ nginx:
     - "php"
   volumes_from:
     - php
+  labels: io.rancher.sidekicks: php
+    - 
 php:
   image: jemoon/magento-php:1.0
   container_name: php-fpm
-  io.rancher.sidekicks: nginx
   links:
     - "cache:rediscache"
     - "sessions:redissession"
