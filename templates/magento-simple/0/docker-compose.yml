@@ -34,7 +34,7 @@ php:
 src:
   image: tianon/true
   labels:
-    io.rancher.container.start_once=true
+    io.rancher.container.start_once: 'true'
   volumes:
     - ${APP_LOCATION}:/var/www/html
 mysql:

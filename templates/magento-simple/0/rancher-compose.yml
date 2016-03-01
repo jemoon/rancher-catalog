@@ -49,13 +49,12 @@
       type: "string"
       default: ""
     - variable: "APP_LOCATION"
-      description: "" 
+      description: "Needs to point src directory"
       label: "App Files Location On Host"
       required: true
       type: "string"
       default: ""
-    - variable: "MYSQL_LOCATION"
-      description: "Needs to point src directory" 
+    - variable: "MYSQL_LOCATION" 
       label: "MySQL Location"
       required: true
       type: "string"
