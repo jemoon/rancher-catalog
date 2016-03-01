@@ -18,7 +18,7 @@ nginx:
   volumes_from:
     - src-nginx
   labels:
-    io.rancher.sidekicks: src-php
+    io.rancher.sidekicks: src-nginx
 php:
   image: jemoon/magento-php:1.0
   container_name: php-fpm
