@@ -55,7 +55,7 @@
       type: "string"
       default: ""
     - variable: "MYSQL_LOCATION"
-      description: "" 
+      description: "Needs to point src directory" 
       label: "MySQL Location"
       required: true
       type: "string"

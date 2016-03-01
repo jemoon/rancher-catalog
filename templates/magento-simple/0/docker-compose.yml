@@ -15,8 +15,10 @@ nginx:
     - "443:443"
   links:
     - "php"
-  volumes:
-    - ${APP_LOCATION}:/var/www/html
+  volumes_from:
+    - src
+  labels:
+    io.rancher.sidekicks: src
 php:
   image: jemoon/magento-php:1.0
   container_name: php-fpm
@@ -26,9 +28,15 @@ php:
     - "fpc:redisfpc"
     - "mysql:mysql"
   labels:
-    io.rancher.sidekicks: nginx
+    io.rancher.sidekicks: src
   volumes_from:
-    - nginx
+    - src
+src:
+  image: tianon/true
+  labels:
+    io.rancher.container.start_once=true
+  volumes:
+    - ${APP_LOCATION}:/var/www/html
 mysql:
   image: percona:latest
   container_name: percona
