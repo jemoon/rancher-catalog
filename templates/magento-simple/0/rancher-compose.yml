@@ -48,6 +48,17 @@
       required: true
       type: "string"
       default: ""
+    - variable: "KEY"
+      description: ""
+      label: "Host Key"
+      required: true
+      type: "string"
+      default: "io.alekseon.shared"
+    - variable: "VALUE" 
+      label: "Value For Host's Key"
+      required: true
+      type: "string"
+      default: "true"
     - variable: "APP_LOCATION"
       description: "Needs to point src directory"
       label: "App Files Location On Host"

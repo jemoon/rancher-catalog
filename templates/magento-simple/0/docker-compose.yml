@@ -19,6 +19,7 @@ nginx:
     - src-nginx
   labels:
     io.rancher.sidekicks: src-nginx
+    io.rancher.scheduler.affinity:host_label: ${KEY}=${VALUE}
 php:
   image: jemoon/magento-php:1.0
   container_name: php-fpm
@@ -29,18 +30,21 @@ php:
     - "mysql:mysql"
   labels:
     io.rancher.sidekicks: src-php
+    io.rancher.scheduler.affinity:host_label: ${KEY}=${VALUE}
   volumes_from:
     - src-php
 src-php:
   image: tianon/true
   labels:
     io.rancher.container.start_once: 'true'
+    io.rancher.scheduler.affinity:host_label: ${KEY}=${VALUE}
   volumes:
     - ${APP_LOCATION}:/var/www/html
 src-nginx:
   image: tianon/true
   labels:
     io.rancher.container.start_once: 'true'
+    io.rancher.scheduler.affinity:host_label: ${KEY}=${VALUE}
   volumes:
     - ${APP_LOCATION}:/var/www/html
 mysql:
@@ -50,12 +54,20 @@ mysql:
     - "3306:3306"
   volumes:
     - ${MYSQL_LOCATION}:/var/lib/mysql
+  labels:
+    io.rancher.scheduler.affinity:host_label: ${KEY}=${VALUE}
 cache:
   image: redis:latest
   container_name: redis-cache
+  labels:
+    io.rancher.scheduler.affinity:host_label: ${KEY}=${VALUE}
 fpc:
   image: redis:latest
   container_name: redis-fpc
+  labels:
+    io.rancher.scheduler.affinity:host_label: ${KEY}=${VALUE}
 sessions:
   image: redis:latest
   container_name: redis-sessions
+  labels:
+    io.rancher.scheduler.affinity:host_label: ${KEY}=${VALUE}
