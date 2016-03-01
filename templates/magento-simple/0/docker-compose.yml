@@ -16,9 +16,9 @@ nginx:
   links:
     - "php"
   volumes_from:
-    - src
+    - src-nginx
   labels:
-    io.rancher.sidekicks: src
+    io.rancher.sidekicks: src-php
 php:
   image: jemoon/magento-php:1.0
   container_name: php-fpm
@@ -28,10 +28,16 @@ php:
     - "fpc:redisfpc"
     - "mysql:mysql"
   labels:
-    io.rancher.sidekicks: src
+    io.rancher.sidekicks: src-php
   volumes_from:
-    - src
-src:
+    - src-php
+src-php:
+  image: tianon/true
+  labels:
+    io.rancher.container.start_once: 'true'
+  volumes:
+    - ${APP_LOCATION}:/var/www/html
+src-nginx:
   image: tianon/true
   labels:
     io.rancher.container.start_once: 'true'
