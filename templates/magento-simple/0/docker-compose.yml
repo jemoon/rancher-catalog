@@ -13,8 +13,6 @@ nginx:
   ports:
     - "8090:80"
     - "4431:443"
-  links:
-    - "php"
   volumes_from:
     - php
   labels:
