@@ -48,8 +48,6 @@ src-nginx:
 mysql:
   image: percona:latest
   container_name: percona
-  ports:
-    - "3306:3306"
   volumes:
     - ${MYSQL_LOCATION}:/var/lib/mysql
   labels:
