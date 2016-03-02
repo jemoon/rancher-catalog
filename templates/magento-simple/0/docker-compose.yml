@@ -11,8 +11,8 @@ nginx:
     MYSQL_PASSWORD: ${MYSQL_PASS}
   container_name: nginx
   ports:
-    - "80:80"
-    - "443:443"
+    - "8090:80"
+    - "4431:443"
   links:
     - "php"
   volumes_from:
