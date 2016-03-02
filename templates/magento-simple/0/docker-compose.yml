@@ -15,10 +15,9 @@ nginx:
     - "443:443"
   links:
     - "php"
-  volumes_from:
-    - src-nginx
+  volumes:
+    - ${APP_LOCATION}:/var/www/html
   labels:
-    io.rancher.sidekicks: src-nginx
     io.rancher.scheduler.affinity:host_label: ${KEY}=${VALUE}
 php:
   image: jemoon/magento-php:1.0
@@ -28,19 +27,6 @@ php:
     - "sessions:redissession"
     - "fpc:redisfpc"
     - "mysql:mysql"
-  labels:
-    io.rancher.sidekicks: src-php
-    io.rancher.scheduler.affinity:host_label: ${KEY}=${VALUE}
-  volumes_from:
-    - src-php
-src-php:
-  image: tianon/true
-  labels:
-    io.rancher.scheduler.affinity:host_label: ${KEY}=${VALUE}
-  volumes:
-    - ${APP_LOCATION}:/var/www/html
-src-nginx:
-  image: tianon/true
   labels:
     io.rancher.scheduler.affinity:host_label: ${KEY}=${VALUE}
   volumes:
