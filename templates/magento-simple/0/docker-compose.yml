@@ -15,9 +15,10 @@ nginx:
     - "443:443"
   links:
     - "php"
-  volumes:
-    - ${APP_LOCATION}:/var/www/html
+  volumes_from:
+    - php
   labels:
+    io.rancher.sidekicks: php
     io.rancher.scheduler.affinity:host_label: ${KEY}=${VALUE}
 php:
   image: jemoon/magento-php:1.0
