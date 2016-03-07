@@ -1,33 +1,22 @@
 nginx:
-  image: jemoon/magento-nginx:1.0
-  environment:
-    PHP_HOST: ${FPM_HOST}
-    PHP_PORT: ${FPM_PORT}
-    ENCRYPTIONKEY: ${ENC_KEY}
-    ADMIN_FRONTNAME: ${ADMIN_NAME}
-    MYSQL_HOST: ${MYSQL_HOST}
-    MYSQL_DATABASE: ${MYSQL_DB}
-    MYSQL_USER: ${MYSQL_USER}
-    MYSQL_PASSWORD: ${MYSQL_PASS}
-  container_name: nginx
+  image: jemoon/magento-nginx-php:1.0
+  container_name: nginx-php
   ports:
-    - "8090:80"
-    - "4431:443"
+    - "80:80"
+    - "443:443"
   volumes_from:
-    - php
-  labels:
-    io.rancher.sidekicks: php
-    io.rancher.scheduler.affinity:host_label: ${KEY}=${VALUE}
-php:
-  image: jemoon/magento-php:1.0
-  container_name: php-fpm
+    - data
   links:
     - "cache:rediscache"
     - "sessions:redissession"
     - "fpc:redisfpc"
     - "mysql:mysql"
   labels:
+    io.rancher.sidekicks: data
     io.rancher.scheduler.affinity:host_label: ${KEY}=${VALUE}
+data:
+  image: tianon/true
+  container_name: data
   volumes:
     - ${APP_LOCATION}:/var/www/html
 mysql:
