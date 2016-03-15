@@ -22,8 +22,13 @@ data:
   labels:
     io.rancher.container.start_once: true
 mysql:
-  image: percona:latest
+  image: percona:5.5
   container_name: percona
+  environmnet:
+    MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    MYSQL_DATABASE: ${MYSQL_DATABASE}
+    MYSQL_USER: ${MYSQL_USER}
+    MYSQL_PASSWORD: ${MYSQL_PASSWORD}
   volumes:
     - ${MYSQL_LOCATION}:/var/lib/mysql
   labels:

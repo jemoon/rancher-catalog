@@ -8,12 +8,12 @@
     - variable: "KEY"
       description: ""
       label: "Host Key"
-      required: true
+      required: false
       type: "string"
       default: "io.alekseon.shared"
     - variable: "VALUE" 
       label: "Value For Host's Key"
-      required: true
+      required: false
       type: "string"
       default: "true"
     - variable: "APP_LOCATION"
@@ -27,4 +27,20 @@
       required: true
       type: "string"
       default: "/var/lib/mysql"
+    - variable: "MYSQL_ROOT_PASSWORD"
+      label: "Mysql Root Password"
+      required: true
+      type: string
+    - variable: "MYSQL_DATABASE"
+      label: "Mysql DB Name"
+      required: true
+      type: string
+    - variable: "MYSQL_USER"
+      label: "Mysql User"
+      required: true
+      type: string
+    - variable: "MYSQL_PASSWORD"
+      label: "Mysql User Pass"
+      required: true
+      type: string
 magento:
