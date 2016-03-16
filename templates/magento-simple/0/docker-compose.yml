@@ -24,7 +24,7 @@ data:
 mysql:
   image: percona:5.5
   container_name: percona
-  environmnet:
+  environment:
     MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     MYSQL_DATABASE: ${MYSQL_DATABASE}
     MYSQL_USER: ${MYSQL_USER}
