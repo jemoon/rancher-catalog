@@ -18,7 +18,7 @@ data:
   image: tianon/true
   container_name: data
   volumes:
-    - ${APP_LOCATION}:/var/www/html
+    - ${APP_LOCATION}:/var/www/html/henri.com
   labels:
     io.rancher.container.start_once: true
 mysql:
