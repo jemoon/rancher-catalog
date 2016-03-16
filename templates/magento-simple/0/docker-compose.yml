@@ -31,6 +31,8 @@ mysql:
     MYSQL_PASSWORD: ${MYSQL_PASSWORD}
   volumes:
     - ${MYSQL_LOCATION}:/var/lib/mysql
+  ports:
+    - "3306:3306"
   labels:
     io.rancher.scheduler.affinity:host_label: ${KEY}=${VALUE}
 cache:
