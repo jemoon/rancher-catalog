@@ -15,8 +15,4 @@
       required: true
       type: "string"
       default: "/var/lib/mysql"
-    - variable: "MYSQL_ROOT_PASSWORD"
-      label: "Mysql Root Password"
-      required: true
-      type: string
 magento:
