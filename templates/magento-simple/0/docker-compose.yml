@@ -1,5 +1,5 @@
 nginx:
-  image: jemoon/magento-nginx-php:1.2
+  image: jemoon/nginx-php:1.0
   container_name: nginx-php
   ports:
     - "80:80"
