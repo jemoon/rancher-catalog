@@ -13,40 +13,24 @@ nginx:
     - "mysql:mysql"
   labels:
     io.rancher.sidekicks: data
-    io.rancher.scheduler.affinity:host_label: ${KEY}=${VALUE}
 data:
   image: tianon/true
   container_name: data
   volumes:
-    - ${APP_LOCATION}:/var/www/html/henri.com
+    - ${APP_LOCATION}:${APP_LOCATION}
   labels:
     io.rancher.container.start_once: true
 mysql:
-  image: percona:5.5
+  image: percona:5.6
   container_name: percona
-  environment:
-    MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-    MYSQL_DATABASE: ${MYSQL_DATABASE}
-    MYSQL_USER: ${MYSQL_USER}
-    MYSQL_PASSWORD: ${MYSQL_PASSWORD}
   volumes:
     - ${MYSQL_LOCATION}:/var/lib/mysql
-  ports:
-    - "3306:3306"
-  labels:
-    io.rancher.scheduler.affinity:host_label: ${KEY}=${VALUE}
 cache:
   image: redis:latest
   container_name: redis-cache
-  labels:
-    io.rancher.scheduler.affinity:host_label: ${KEY}=${VALUE}
 fpc:
   image: redis:latest
   container_name: redis-fpc
-  labels:
-    io.rancher.scheduler.affinity:host_label: ${KEY}=${VALUE}
 sessions:
   image: redis:latest
   container_name: redis-sessions
-  labels:
-    io.rancher.scheduler.affinity:host_label: ${KEY}=${VALUE}
